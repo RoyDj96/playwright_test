@@ -2,14 +2,24 @@ pipeline {
     agent any
 
     stages {
-        stage('Construir Proyecto') {
+        stage('Instalar Dependencias') {
             steps {
-                sh 'npm install'
+                script {
+                    // Instalación de dependencias del proyecto
+                    sh 'npm install'
+                    // Instalación de Playwright y sus dependencias de navegador
+                    sh 'npx playwright install'
+                }
             }
         }
 
-        stage('Pruebas') {
-            sh 'npm test'
+        stage('Ejecutar Pruebas') {
+            steps {
+                script {
+                    // Ejecuta las pruebas de Playwright, ajusta el comando según sea necesario
+                    sh 'npx playwright test'
+                }
+            }
         }
     }
 
