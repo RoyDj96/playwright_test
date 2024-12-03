@@ -1,21 +1,24 @@
 pipeline {
     agent any
-    stages {
-      
-      stage('Install Dependencies') {
-        steps {
-          dir('playwright') {
-            sh 'npm install'
-          }
-        }
-      }
 
-      stage('Run E2E Tests') {
-        steps {
-          dir('playwright') {
-            sh 'npm test'
-          }
+    stages {
+        stage('Construir Proyecto') {
+            steps {
+                sh 'npm install'
+            }
         }
-      }
+
+        stage('Pruebas') {
+            sh 'npm test'
+        }
+    }
+
+    post {
+        success {
+            echo 'Pipeline completado exitosamente.'
+        }
+        failure {
+            echo 'Hubo un error en el pipeline.'
+        }
     }
 }
