@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Instalar Dependencias') {
             steps {
-                sh 'npm install'
+                sh 'npm ci'
                 sh 'npx playwright install'  // Instala los navegadores de Playwright
             }
         }
@@ -23,10 +23,10 @@ pipeline {
 
     post {
         success {
-            echo 'Pipeline completado exitosamente.'
+            echo 'test completado exitosamente.'
         }
         failure {
-            echo 'Hubo un error en el pipeline.'
+            echo 'Hubo un error en el test.'
         }
     }
 }
