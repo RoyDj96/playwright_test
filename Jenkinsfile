@@ -17,7 +17,7 @@ pipeline {
 
         stage('Ejecutar Pruebas') {
             steps {
-                sh 'npx playwright test'  // Ejecuta las pruebas de Playwright
+                sh 'npx playwright test --project=chromium'  // Ejecuta las pruebas de Playwright
             }
         }
     }
