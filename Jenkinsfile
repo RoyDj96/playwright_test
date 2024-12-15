@@ -12,7 +12,7 @@ pipeline {
         stage('create container test') {
             steps {
                 sh 'docker run --name playwright --network bridge test'
-                sh 'docker logs'
+                sh 'docker logs playwright'
             }
         }
 
