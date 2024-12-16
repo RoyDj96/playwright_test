@@ -15,7 +15,7 @@ pipeline {
             }
         }
 
-        stage('Ejecutar Pruebas') {
+        stage('create container test') {
             steps {
                 sh 'npx playwright test --project=chromium'
             }
