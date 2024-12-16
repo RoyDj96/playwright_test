@@ -1,23 +1,23 @@
 pipeline {
     agent {
         docker {
-            image 'mcr.microsoft.com/playwright:v1.49.0-noble'  // Docker con Node.js y Playwright
-            args '-u root'  // Opcional: Si necesitas permisos de root dentro del contenedor
+            image 'mcr.microsoft.com/playwright:v1.49.0-noble'
         }
     }
 
     stages {
-
         stage('Instalar Dependencias') {
             steps {
-                sh 'npm install'
-                sh 'npx playwright install'  // Instala los navegadores de Playwright
+                sh '''
+                npm i -D @playwright/test
+                npx playwright install
+                '''
             }
         }
 
         stage('Ejecutar Pruebas') {
             steps {
-                sh 'npx playwright test --project=chromium'  // Ejecuta las pruebas de Playwright
+                sh 'npx playwright test --project=chromium'
             }
         }
     }
